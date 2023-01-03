@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 @Getter
 @Component
 public class MovieRepositoryFromJsonFile {
-    private final static String DATA_PATH = "/data/movies.json";
+    private final static String DATA_PATH = "/data/movies1.json";
     private List<Movie> movies = new ArrayList<>();
 
     @PostConstruct
