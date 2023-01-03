@@ -36,11 +36,11 @@ public class SwaggerConfiguration {
 
     private ApiInfo apiInfo() {
         return new ApiInfo(
-                "My REST API",
+                "REST API for Wookie-Movies",
                 "Some custom description of API.",
                 "1.0",
                 "Terms of service",
-                new Contact("Katsiaryna Zhalabkevich", "www.cogniteq.com", "katsiaryna.zhalabkevich@cogniteq.com"),
+                new Contact("Katsiaryna Zhalabkevich", "https://github.com/KatsiarynaZhalabkevich/Wookie-Movies", "katsiaryna.zhalabkevich@cogniteq.com"),
                 "License of API",
                 "API license URL",
                 Collections.emptyList());
