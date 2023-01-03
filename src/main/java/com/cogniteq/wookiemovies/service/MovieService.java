@@ -15,6 +15,8 @@ import java.util.UUID;
 
 @Service
 public class MovieService {
+    private final static String JPG = ".jpg";
+
     private MovieRepositoryFromJsonFile movieRepositoryFromJsonFile;
 
     public List<Movie> getMovies() {
@@ -43,12 +45,17 @@ public class MovieService {
                     folderName, fileName));
         }
 
-        if (!StringUtils.endsWithIgnoreCase(fileName, ".jpg")) {
+        if (!StringUtils.endsWithIgnoreCase(fileName, JPG)) {
             throw new RequestParametersValidationException(String.format("FileName [%s] parameter has wrong format!",
                     fileName));
         }
-
-        var id = UUID.fromString(fileName.split("/.")[0]);
+        UUID id;
+        try {
+            id = UUID.fromString(fileName.replace(JPG, org.apache.commons.lang3.StringUtils.EMPTY));
+        } catch (IllegalArgumentException e) {
+            throw new RequestParametersValidationException(
+                    String.format("No movies with poster file name [%s] found!", fileName));
+        }
 
         if (movieRepositoryFromJsonFile.getMovieById(id).isEmpty()) {
             throw new EntityNotFoundException(String.format("No movies with poster file name [%s].jpg found!", id));
